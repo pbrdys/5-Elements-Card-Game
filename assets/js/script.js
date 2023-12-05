@@ -110,7 +110,7 @@ function showBoard() {
  * This function will show the landing page and hide the board
  */
 function showLandingPage() {
-    document.getElementById("menu").style.display = "block";
+    document.getElementById("menu").style.display = "flex";
     document.getElementById("game").style.display = "none";
 }
 
@@ -190,6 +190,15 @@ function getRandomIndex(min, max) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    let btnStartGame = document.getElementById("btnStartGame");
+    // ADD CLICK EVENT - START GAME
+    let btnStartGame = document.getElementById("btnStart");
     btnStartGame.addEventListener("click", startGame);
+
+    // ADD CLICK EVENT - END GAME
+    let btnEndGame = document.getElementById("btnEnd");
+    btnEndGame.addEventListener("click", showLandingPage);
+
+    // ADD CLICK EVENT - RESTART GAME
+    let btnRestartGame = document.getElementById("btnRestart");
+    btnRestartGame.addEventListener("click", startGame);
 });

@@ -6,7 +6,6 @@
     <title>5 Elements Card Game</title>
     <link rel="icon" href="assets/images/favicon.jpg" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/script.js"></script>
 </head>
 <body>
     <header class="header">
@@ -19,7 +18,77 @@
                 Start Game
             </div>
             <div class="menu-item" id="btnRules">
-                <span>Rules</span>
+                <span>About / Rules </span>
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                
+                <h2>5 Elements Card Game - Instructions</h2>
+                <p>
+                    Embark on a thrilling journey through the realms of Traditional Chinese Medicine (TCM) with 5 Elements Card Game.
+                    This captivating game is inspired by the profound principles of TCM's Five Elements Theory (Wuxing).
+                    Immerse yourself in the interconnectedness of wood, fire, earth, metal, and water as you explore the intricacies 
+                    of this ancient philosophy.
+                </p>
+
+                <hr/>
+
+                <h3>Key Features:</h3>
+                <ol>
+                    <li>
+                        <span class="bold">Based on TCM Five Elements Theory:</span>
+                        Five Elements Card Game draws its inspiration from TCM's Five Elements Theory, 
+                        also known as Wuxing. Discover the deep-rooted connections between wood, fire, earth, metal, and water.
+                    </li>
+                    <li>
+                        <span class="bold">Explore the Elements:</span>
+                        Each element wood, fire, earth, metal, and water is associated with specific body organs, colors, tastes, emotions, and even seasons of the year, 
+                        among other characteristics. This game allows you to experience and understand these associations in an interactive and engaging way.
+                    </li>
+                    <li>
+                        <span class="bold">Cycle of Elements:</span>
+                        Learn about the cyclical relationships between the elements Generating, Counteracting, Regulating, and Draining. 
+                        Mastering these cycles is crucial to success in the game. Strategize and adapt your gameplay based on the ever changing dynamics of the elements.
+                    </li>
+                    <li>
+                        <span class="bold">12 Unique Characteristics:</span>
+                        Each element card is meticulously crafted with ten distinct characteristics, including the represented Zang Fu organs, sensory organs, 
+                        emotions, and more. Immerse yourself in the intricate details of each element as you play.
+                    </li>
+                </ol>
+                
+                <hr/>
+
+                <h3>How to play:</h3>
+                <ol>
+                    <li>
+                        <span class="bold primary-color">Prepare the Special Cards</span>
+                        The game starts with selecting one of the special cards: Generating, Counteracting, Draining, or Regulating. 
+                        This card will determine the initial gameplay mode. Once chosen, the other 3 special cards go back into the deck.
+                    </li>
+                    <li>
+                        <span class="bold primary-color">Shuffle and Deal</span>
+                        The entire deck will be shuffeled. Deal 5 cards to each player, creating their starting hand. 
+                        Starting hand can not include special cards. 
+                    </li>
+                    <li>
+                        <span class="bold primary-color">Start the Game</span>
+                        Reveal the top card from the deck. This card will serve as the starting point for the game. 
+                    </li>
+                    <li>
+                        <span class="bold primary-color">Draw and Set Card</span>
+                        Depending on the current element cycle, you can now set a card on the initial card. If you don't have a card that fits 
+                        the current cycle, you can draw a card. 
+                    </li>
+                    <li>
+                        <span class="bold primary-color">Changing Cycle</span>
+                        When you draw a special card, this card doesn't go into your hand - instead it changes the current cycle and you can continue your game.
+                    </li>
+                </ol>
             </div>
         </div>
         <div id="board">
@@ -34,5 +103,8 @@
         </div>
         <p>This game was developed by @PhillipBrdys</p>
     </footer>
+    
+    <script src="assets/js/modal.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

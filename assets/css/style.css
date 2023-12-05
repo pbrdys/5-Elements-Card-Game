@@ -3,6 +3,7 @@
     /* ---------------------- */
     --color-primary: #0C65A0;
     --color-secondary: #287db5;
+    --color-accent: #f4b160;
 
     --color-fire: #C51000;
     --color-water: #128BDA;
@@ -232,4 +233,68 @@ h1 {
 
 li {
     list-style: square;
+}
+
+/* BOARD */
+/* ---------------------- */
+
+/* PLAYER NAME */
+.divPlayerName {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 5% 5% 0 5%;
+    border-bottom: 1px solid black;
+    margin-bottom: 5%;
+}
+
+.divActionButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+.divActionButtons button {
+    font-weight: 400;
+    color: white;
+    background-color: var(--color-secondary);
+    border:3px solid var(--color-primary);
+    border-radius: 10px;
+    padding-block: 5%;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* CURRENT CYCLE */
+.divCurrentCycle {
+    display:flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-inline: 5%;
+}
+.divCurrentCycle .element-img {
+    width: 20%;
+}
+.divCurrentCycle .arrow {
+    border: solid black;
+    border-width: 0 5px 3px 0;
+    display: inline-block;
+    padding: 1%;
+}
+.divCurrentCycle .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.divActionButtons {
+    padding: 5%;
+}
+
+/* ADDITIONAL INFORMATION */ 
+.divAdditionalInformations {
+    margin-block: 5%;
+    padding: 5%;
+    background-color: var(--color-accent);
+    font-size: 1rem;
+    font-weight: 600;
 }

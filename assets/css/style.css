@@ -107,6 +107,10 @@ main {
     cursor: pointer;
 }
 
+#game {
+    display: none;
+}
+
 /* MODAL */ 
 /* ---------------------- */
  /* The Modal (background) */

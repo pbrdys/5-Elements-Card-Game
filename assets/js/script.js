@@ -71,22 +71,30 @@ let deck = [
     { id: "cardId_58", element: "earth", category: "animal", name: "tiger" },
     { id: "cardId_59", element: "metal", category: "animal", name: "snake" },
     { id: "cardId_60", element: "water", category: "animal", name: "turtle" },
+];
+
+let specialDeck = [
     // SPECIAL CARDS
     { id: "cardId_100", category: "rule", name: "regulate"},
     { id: "cardId_101", category: "rule", name: "counteract"},
     { id: "cardId_102", category: "rule", name: "generate"},
-    { id: "cardId_103", category: "rule", name: "drain"},
+    { id: "cardId_103", category: "rule", name: "drain"}
 ];
 
 let playersHand = [];
 let currentTopCard;
-let currentElementCycle = "";
+let currentElementCycle;
 
 /***
  * This function is starting the game. 
  */
 function startGame() {
     showBoard();
+    
+    let rndIndex = getRandomIndex(0, 3);
+    let initCycle = specialDeck[rndIndex];
+    setElementCycle(initCycle);
+
     shuffleDeck();
 }
 
@@ -107,6 +115,56 @@ function showLandingPage() {
 }
 
 /***
+ * 
+ */
+function setElementCycle(cycle) {
+    currentElementCycle = cycle.name;
+    let cycleElementOrder = getElementOrder(cycle.name);
+    let divCurrentCycle = document.getElementById("divCurrentCycle");
+    divCurrentCycle.innerHTML = "";
+    
+    for(let i = 0; i < cycleElementOrder.length; i++) {
+        
+        let currentElement = cycleElementOrder[i];
+
+        // create element img 
+        // example: <img src="assets/images/wood.png" class="element-img" alt="wood">
+        let imgElement = document.createElement("img");
+        imgElement.src = "assets/images/" + currentElement + ".png";
+        imgElement.classList.add("element-img");
+        imgElement.alt = currentElement;
+        // create arrow
+        // html example: <i class="arrow right"></i>
+        let arrowElement = document.createElement("i");
+        arrowElement.classList.add("arrow");
+        arrowElement.classList.add("right");
+
+        divCurrentCycle.appendChild(imgElement);
+        if(i < cycleElementOrder.length -1) {
+            divCurrentCycle.appendChild(arrowElement);
+        }
+    }
+}
+
+/***
+ * This function is returning the element cycle order 
+ */
+function getElementOrder(cycleName) {
+    switch (cycleName) {
+        case "counteract":
+            return ["fire", "water", "earth", "wood", "metal"];
+        case "regulate":
+            return ["fire", "metal", "wood", "earth", "water"];
+        case "generate":
+            return ["fire", "earth", "metal", "water", "wood"];
+        case "drain":
+            return ["fire", "wood", "water", "metal", "earth"];
+        default:
+            return null;
+    }
+}
+
+/***
  * Shuffle the deck randomly
  */
 function shuffleDeck() {
@@ -116,6 +174,18 @@ function shuffleDeck() {
         deck[newIndex] = deck[i];
         deck[i] = oldValue;
     }
+}
+
+/**
+ * Generates and returns a random index within the specified range.
+ * 
+ * @param {number} min - The minimum index value (inclusive).
+ * @param {number} max - The maximum index value (inclusive).
+ * @returns {number} - A random index within the specified range.
+ */
+function getRandomIndex(min, max) {
+    // get random index
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 

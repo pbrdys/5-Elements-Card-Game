@@ -270,23 +270,23 @@ li {
 }
 
 /* CURRENT CYCLE */
-.divCurrentCycle {
+#divCurrentCycle {
     display:flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
     padding-inline: 5%;
 }
-.divCurrentCycle .element-img {
+#divCurrentCycle .element-img {
     width: 20%;
 }
-.divCurrentCycle .arrow {
+#divCurrentCycle .arrow {
     border: solid black;
     border-width: 0 5px 3px 0;
     display: inline-block;
     padding: 1%;
 }
-.divCurrentCycle .right {
+#divCurrentCycle .right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
 }

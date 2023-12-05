@@ -82,7 +82,7 @@ header {
 main {
     display:flex;
     flex-direction: column;
-    height:100%;
+    min-height:100%;
 }
 
 /* MENU */
@@ -268,6 +268,7 @@ li {
 /* CURRENT CYCLE */
 .divCurrentCycle {
     display:flex;
+    justify-content: center;
     align-items: center;
     gap: 0.5rem;
     padding-inline: 5%;
@@ -297,4 +298,53 @@ li {
     background-color: var(--color-accent);
     font-size: 1rem;
     font-weight: 600;
+}
+
+#board {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 5%;
+}
+
+/* CARDS */
+.card {
+    background-color: white;
+    border: 10px solid rgba(0,0,0,0.2);
+    border-radius: 8px;
+    overflow-wrap: break-word;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+
+    user-select: none;
+}
+
+.pointer { 
+    cursor: pointer;
+}
+
+.card img {
+    width: 125px;
+}
+
+.card p {
+    font-size: 1rem;
+}
+
+#playersHand {
+    margin-top: 5%;
+    margin-bottom: 10%;
+    display: flex;
+    position: relative;
+    gap: 0.5rem;
+    width: 100%;
+    cursor: pointer;
+    
+    overflow-x: scroll;
 }

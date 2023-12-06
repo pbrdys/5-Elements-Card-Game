@@ -169,6 +169,11 @@ function setCardByEvent(e) {
         setCard(card);
         // when we set the card, we will have to discard that card from our hand
         discardCard(card);
+
+        // if player has discared the last card, the game is over - show a propper message
+        if(playersHand.length == 0) {
+            displayAdditionalInformations("CONGRATULATIONS - YOU HAVE FINISHED THE GAME. <br/> Hopefully you have learned something :)");
+        }
     }
     else {
         displayAdditionalInformations("You can not place a " + card.element + " element on top of an " + currentTopCard.element + " element in the " + currentElementCycle + " cycle.");
@@ -181,6 +186,7 @@ function discardCard(card) {
     if (cardToRemove) {
         var parentElement = cardToRemove.parentNode;
         parentElement.removeChild(cardToRemove);
+        playersHand = playersHand.filter(item => item !== card);
     }
 }
 

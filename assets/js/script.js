@@ -43,7 +43,7 @@ let deck = [
     { id: "cardId_35", element: "water", category: "yin", name: "kidneys" },
     // YANG MERIDIAN 
     { id: "cardId_36", element: "wood", category: "yang", name: "gallbladder" },
-    { id: "cardId_37", element: "fire", category: "yang", name: "small intestine & tripple burner" },
+    { id: "cardId_37", element: "fire", category: "yang", name: "small intestine" },
     { id: "cardId_38", element: "earth", category: "yang", name: "stomach" },
     { id: "cardId_39", element: "metal", category: "yang", name: "large intestine" },
     { id: "cardId_40", element: "water", category: "yang", name: "bladder" },
@@ -105,6 +105,13 @@ function startGame() {
     // set the first card as starting point for the game
     let drawnCard = getCard();
     setCard(drawnCard);
+
+    // initiate players hand with 5 cards
+    let playersHandElement = document.getElementById("playersHand");
+    playersHandElement.innerHTML = "";
+    for(let i = 0; i < 5; i++) {
+        draw();
+    }
 }
 
 /**
@@ -148,7 +155,35 @@ function setCard(card) {
 function draw() {
     let card = getCard();
 
-    // appendchild etc.
+    let playersHandElement = document.getElementById("playersHand");
+
+    /* EXAMPLE: 
+    <div class="card">
+        <img src="assets/images/earth.png" alt="earth">
+        <p>season</p>
+        <p>spring</p>
+    </div>
+    */
+
+    let cardElement = document.createElement("div");
+    cardElement.classList.add("card");
+
+    let imgElement = document.createElement("img");
+    imgElement.src = "assets/images/" + card.element + ".png";
+    imgElement.classList.add("element-img");
+    imgElement.alt = card.element;
+
+    let pElement1 = document.createElement("p");
+    pElement1.appendChild(document.createTextNode(card.category));
+
+    let pElement2 = document.createElement("p");
+    pElement2.appendChild(document.createTextNode(card.name));
+
+    cardElement.appendChild(imgElement);
+    cardElement.appendChild(pElement1);
+    cardElement.appendChild(pElement2);
+
+    playersHandElement.appendChild(cardElement);
 }
 
 /**

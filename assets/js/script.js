@@ -75,10 +75,10 @@ let deck = [
 
 let specialDeck = [
     // SPECIAL CARDS
-    { id: "cardId_100", category: "rule", name: "regulate"},
-    { id: "cardId_101", category: "rule", name: "counteract"},
-    { id: "cardId_102", category: "rule", name: "generate"},
-    { id: "cardId_103", category: "rule", name: "drain"}
+    { id: "cardId_100", element: "cycle", category: "cycle", name: "regulate"},
+    { id: "cardId_101", element: "cycle", category: "cycle", name: "counteract"},
+    { id: "cardId_102", element: "cycle", category: "cycle", name: "generate"},
+    { id: "cardId_103", element: "cycle", category: "cycle", name: "drain"}
 ];
 
 let playersHand = [];
@@ -101,6 +101,54 @@ function startGame() {
     deck = mergeArrays(deck, specialDeck);
     // shuffle the entire deck
     shuffleDeck();
+
+    // set the first card as starting point for the game
+    let drawnCard = getCard();
+    setCard(drawnCard);
+}
+
+/**
+ * This function will return a card from the deck.
+ * Basically the first one on top
+ * So always Index: 0
+ */
+function getCard() {
+    let drawnCard = deck[0];
+    removeElementByIndex(deck, 0);
+    return drawnCard;
+}
+
+function setCard(card) {
+    currentTopCard = card;
+    let topCardElement = document.getElementById("topCard");
+    topCardElement.innerHTML = "";
+
+    /* EXAMPLE: 
+        <img src="assets/images/wood.png" alt="top card">
+        <p>season</p>
+        <p>spring</p>
+    */
+
+    let imgElement = document.createElement("img");
+    imgElement.src = "assets/images/" + card.element + ".png";
+    imgElement.classList.add("element-img");
+    imgElement.alt = card.element;
+
+    let pElement1 = document.createElement("p");
+    pElement1.appendChild(document.createTextNode(card.category));
+
+    let pElement2 = document.createElement("p");
+    pElement2.appendChild(document.createTextNode(card.name));
+
+    topCardElement.appendChild(imgElement);
+    topCardElement.appendChild(pElement1);
+    topCardElement.appendChild(pElement2);
+}
+
+function draw() {
+    let card = getCard();
+
+    // appendchild etc.
 }
 
 /**

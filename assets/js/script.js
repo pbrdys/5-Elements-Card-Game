@@ -104,7 +104,9 @@ function startGame() {
 
     // set the first card as starting point for the game
     let drawnCard = getCard();
-    setCard(drawnCard);
+    if(drawnCard != null) {
+        setCard(drawnCard);
+    }
 
     // initiate players hand with 5 cards
     let playersHandElement = document.getElementById("playersHand");
@@ -120,9 +122,23 @@ function startGame() {
  * So always Index: 0
  */
 function getCard() {
-    let drawnCard = deck[0];
-    removeElementByIndex(deck, 0);
-    return drawnCard;
+    if(deck.length > 0) {
+        let drawnCard = deck[0];
+        removeElementByIndex(deck, 0);
+        return drawnCard;
+    } else {
+        let deck = document.getElementById("deck");
+        deck.innerHTML = "";
+
+        let imgElement = document.createElement("img");
+        imgElement.src = "assets/images/no-cards.png";
+        imgElement.alt = "no cards";
+
+        deck.appendChild(imgElement);
+
+        return null;
+    }
+    
 }
 
 function setCard(card) {
@@ -138,7 +154,6 @@ function setCard(card) {
 
     let imgElement = document.createElement("img");
     imgElement.src = "assets/images/" + card.element + ".png";
-    imgElement.classList.add("element-img");
     imgElement.alt = card.element;
 
     let pElement1 = document.createElement("p");
@@ -155,35 +170,36 @@ function setCard(card) {
 function draw() {
     let card = getCard();
 
-    let playersHandElement = document.getElementById("playersHand");
+    if(card != null) {
+        let playersHandElement = document.getElementById("playersHand");
 
-    /* EXAMPLE: 
-    <div class="card">
-        <img src="assets/images/earth.png" alt="earth">
-        <p>season</p>
-        <p>spring</p>
-    </div>
-    */
+        /* EXAMPLE: 
+        <div class="card">
+            <img src="assets/images/earth.png" alt="earth">
+            <p>season</p>
+            <p>spring</p>
+        </div>
+        */
 
-    let cardElement = document.createElement("div");
-    cardElement.classList.add("card");
+        let cardElement = document.createElement("div");
+        cardElement.classList.add("card");
 
-    let imgElement = document.createElement("img");
-    imgElement.src = "assets/images/" + card.element + ".png";
-    imgElement.classList.add("element-img");
-    imgElement.alt = card.element;
+        let imgElement = document.createElement("img");
+        imgElement.src = "assets/images/" + card.element + ".png";
+        imgElement.alt = card.element;
 
-    let pElement1 = document.createElement("p");
-    pElement1.appendChild(document.createTextNode(card.category));
+        let pElement1 = document.createElement("p");
+        pElement1.appendChild(document.createTextNode(card.category));
 
-    let pElement2 = document.createElement("p");
-    pElement2.appendChild(document.createTextNode(card.name));
+        let pElement2 = document.createElement("p");
+        pElement2.appendChild(document.createTextNode(card.name));
 
-    cardElement.appendChild(imgElement);
-    cardElement.appendChild(pElement1);
-    cardElement.appendChild(pElement2);
+        cardElement.appendChild(imgElement);
+        cardElement.appendChild(pElement1);
+        cardElement.appendChild(pElement2);
 
-    playersHandElement.appendChild(cardElement);
+        playersHandElement.appendChild(cardElement);
+    }
 }
 
 /**
@@ -345,5 +361,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // ADD CLICK EVENT - GET CARD FROM DECK 
     let deckElement = document.getElementById("deck");
-    deckElement.addEventListener("click", getCard);
+    deckElement.addEventListener("click", draw);
 });

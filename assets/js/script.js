@@ -141,6 +141,25 @@ function getCard() {
     
 }
 
+function setCardByEvent(e) {
+    let cardId = e.currentTarget.id;
+    // get card from playersHand by id
+    let card = playersHand.find(card => card.id === cardId);
+    // call setCard
+    setCard(card);
+    // when we set the card, we will have to discard that card from our hand
+    discardCard(card);
+}
+
+function discardCard(card) {
+    var cardToRemove = document.getElementById(card.id);
+    
+    if (cardToRemove) {
+        var parentElement = cardToRemove.parentNode;
+        parentElement.removeChild(cardToRemove);
+    }
+}
+
 function setCard(card) {
     currentTopCard = card;
     let topCardElement = document.getElementById("topCard");
@@ -183,6 +202,7 @@ function draw() {
 
         let cardElement = document.createElement("div");
         cardElement.classList.add("card");
+        cardElement.id = card.id;
 
         let imgElement = document.createElement("img");
         imgElement.src = "assets/images/" + card.element + ".png";
@@ -198,7 +218,11 @@ function draw() {
         cardElement.appendChild(pElement1);
         cardElement.appendChild(pElement2);
 
+        cardElement.addEventListener("dblclick", setCardByEvent);
+
         playersHandElement.appendChild(cardElement);
+        // global variable for players hand
+        playersHand.push(card);
     }
 }
 

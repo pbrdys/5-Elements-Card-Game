@@ -273,6 +273,27 @@ function getRandomIndex(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function endGame() {
+    location.reload();
+}
+
+function restartGame() {
+    // Set a flag in local storage to indicate a restart
+    localStorage.setItem('restartFlag', 'true');
+
+    // End the game
+    endGame();
+}
+
+// Check if the page is being reloaded due to a restart
+window.onload = function() {
+    if (localStorage.getItem('restartFlag') === 'true') {
+        // Start the game again
+        startGame();
+        // Clear the restart flag in local storage
+        localStorage.removeItem('restartFlag');
+    }
+};
 
 document.addEventListener("DOMContentLoaded", function() {
     // ADD CLICK EVENT - START GAME
@@ -281,9 +302,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // ADD CLICK EVENT - END GAME
     let btnEndGame = document.getElementById("btnEnd");
-    btnEndGame.addEventListener("click", showLandingPage);
+    btnEndGame.addEventListener("click", endGame);
 
     // ADD CLICK EVENT - RESTART GAME
     let btnRestartGame = document.getElementById("btnRestart");
-    btnRestartGame.addEventListener("click", startGame);
+    btnRestartGame.addEventListener("click", restartGame);
+
+    // ADD CLICK EVENT - GET CARD FROM DECK 
+    let deckElement = document.getElementById("deck");
+    deckElement.addEventListener("click", getCard);
 });

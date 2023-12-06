@@ -89,13 +89,38 @@ let currentElementCycle;
  * This function is starting the game. 
  */
 function startGame() {
+    // display the board
     showBoard();
-    
+    // set the initial element cycle
     let rndIndex = getRandomIndex(0, 3);
-    let initCycle = specialDeck[rndIndex];
-    setElementCycle(initCycle);
-
+    let specialDeckCard = specialDeck[rndIndex];
+    setElementCycle(specialDeckCard);
+    // after we set the cycle, we have to remove that card from the specialDeck
+    removeElementByIndex(specialDeck, rndIndex);
+    // shuffle the remaining special cards into the deck
+    deck = mergeArrays(deck, specialDeck);
+    // shuffle the entire deck
     shuffleDeck();
+}
+
+/**
+ * This function is merging two arrays together and returning the concatinated array
+ * @param {*} array1 
+ * @param {*} array2 
+ * @returns the merged array
+ */
+function mergeArrays(array1, array2){
+    let mergedArray = array1.concat(array2);
+    return mergedArray;
+}
+
+/**
+ * This function is removing an element from an array by its index
+ * @param {*} array 
+ * @param {*} index 
+ */
+function removeElementByIndex(array, index) {
+    array.splice(index, 1);
 }
 
 /***

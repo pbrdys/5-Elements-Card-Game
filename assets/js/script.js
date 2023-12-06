@@ -144,6 +144,18 @@ function setElementCycle(cycle) {
             divCurrentCycle.appendChild(arrowElement);
         }
     }
+
+    // REFRESH ADDITIONAL INFO AREA
+    let additionalInformation = "Cycle changed to: " + cycle.name.charAt(0).toUpperCase() + cycle.name.slice(1);
+    displayAdditionalInformations(additionalInformation);
+}
+
+function displayAdditionalInformations(information) {
+    let divAdditionalInformations = document.getElementById("divAdditionalInformations");
+    divAdditionalInformations.innerHTML = "";
+    let pElement = document.createElement("p");
+    pElement.appendChild(document.createTextNode(information));
+    divAdditionalInformations.appendChild(pElement);
 }
 
 /***

@@ -214,39 +214,43 @@ function draw() {
     let card = getCard();
 
     if(card != null) {
-        let playersHandElement = document.getElementById("playersHand");
+        if(card.category === "cycle") {
+            setElementCycle(card);
+        } else {
+            let playersHandElement = document.getElementById("playersHand");
 
-        /* EXAMPLE: 
-        <div class="card">
-            <img src="assets/images/earth.png" alt="earth">
-            <p>season</p>
-            <p>spring</p>
-        </div>
-        */
+            /* EXAMPLE: 
+            <div class="card">
+                <img src="assets/images/earth.png" alt="earth">
+                <p>season</p>
+                <p>spring</p>
+            </div>
+            */
 
-        let cardElement = document.createElement("div");
-        cardElement.classList.add("card");
-        cardElement.id = card.id;
+            let cardElement = document.createElement("div");
+            cardElement.classList.add("card");
+            cardElement.id = card.id;
 
-        let imgElement = document.createElement("img");
-        imgElement.src = "assets/images/" + card.element + ".png";
-        imgElement.alt = card.element;
+            let imgElement = document.createElement("img");
+            imgElement.src = "assets/images/" + card.element + ".png";
+            imgElement.alt = card.element;
 
-        let pElement1 = document.createElement("p");
-        pElement1.appendChild(document.createTextNode(card.category));
+            let pElement1 = document.createElement("p");
+            pElement1.appendChild(document.createTextNode(card.category));
 
-        let pElement2 = document.createElement("p");
-        pElement2.appendChild(document.createTextNode(card.name));
+            let pElement2 = document.createElement("p");
+            pElement2.appendChild(document.createTextNode(card.name));
 
-        cardElement.appendChild(imgElement);
-        cardElement.appendChild(pElement1);
-        cardElement.appendChild(pElement2);
+            cardElement.appendChild(imgElement);
+            cardElement.appendChild(pElement1);
+            cardElement.appendChild(pElement2);
 
-        cardElement.addEventListener("dblclick", setCardByEvent);
+            cardElement.addEventListener("dblclick", setCardByEvent);
 
-        playersHandElement.appendChild(cardElement);
-        // global variable for players hand
-        playersHand.push(card);
+            playersHandElement.appendChild(cardElement);
+            // global variable for players hand
+            playersHand.push(card);
+        }
     }
 }
 

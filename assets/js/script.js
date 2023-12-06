@@ -170,6 +170,9 @@ function setCardByEvent(e) {
         // when we set the card, we will have to discard that card from our hand
         discardCard(card);
     }
+    else {
+        displayAdditionalInformations("You can not place a " + card.element + " element on top of an " + currentTopCard.element + " element in the " + currentElementCycle + " cycle.");
+    }
 }
 
 function discardCard(card) {
@@ -322,9 +325,17 @@ function setElementCycle(cycle) {
 function displayAdditionalInformations(information) {
     let divAdditionalInformations = document.getElementById("divAdditionalInformations");
     divAdditionalInformations.innerHTML = "";
+    // when the user makes an interaction with the game and we want to notify him with an eye-catching animation
+    divAdditionalInformations.classList.add("notification");
+
     let pElement = document.createElement("p");
     pElement.appendChild(document.createTextNode(information));
     divAdditionalInformations.appendChild(pElement);
+
+    // the notification eye-catcher disapears after 3 seconds
+    setTimeout(function() {
+        divAdditionalInformations.classList.remove('notification');
+    }, 3000);
 }
 
 /***

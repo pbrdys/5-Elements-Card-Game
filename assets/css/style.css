@@ -9,7 +9,7 @@
     --color-water: #128BDA;
     --color-metal: #BBBCBA;
     --color-earth: #FCE475;
-    --color-wood: #017D1A;
+    --color-wood: #28773A;
 
     /* fonts */
     /* ---------------------- */
@@ -300,8 +300,14 @@ li {
     margin-block: 5%;
     padding: 5%;
     background-color: var(--color-accent);
+    transition: background-color 1s ease-in-out;
     font-size: 1rem;
     font-weight: 600;
+}
+
+.notification {
+  background-color: var(--color-wood) !important;
+  color: white !important;
 }
 
 #board {

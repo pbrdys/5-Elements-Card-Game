@@ -141,14 +141,35 @@ function getCard() {
     
 }
 
+/**
+ * This function is checking if the card the player selected can be placed. 
+ * Setting the card depends on the current element cycle. 
+ */
+function isSetCardAllowed(card) {
+    let cycleElementOrder = getElementOrder(currentElementCycle);
+
+    let indexCurrentCard = cycleElementOrder.indexOf(currentTopCard.element);
+    let indexCardToPlace = cycleElementOrder.indexOf(card.element);
+
+    if(indexCardToPlace == indexCurrentCard + 1 
+        || (indexCardToPlace == 0 && (indexCurrentCard + 1) == cycleElementOrder.length))
+        return true;
+    else
+        return false;
+}
+
 function setCardByEvent(e) {
     let cardId = e.currentTarget.id;
     // get card from playersHand by id
     let card = playersHand.find(card => card.id === cardId);
-    // call setCard
-    setCard(card);
-    // when we set the card, we will have to discard that card from our hand
-    discardCard(card);
+    // check if setCard is allowed - depending on the current element cycle
+    let setCardAllowed = isSetCardAllowed(card);
+    if(setCardAllowed) {
+        // call setCard
+        setCard(card);
+        // when we set the card, we will have to discard that card from our hand
+        discardCard(card);
+    }
 }
 
 function discardCard(card) {

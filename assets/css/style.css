@@ -249,9 +249,9 @@ li {
     justify-content: space-between;
     align-items: center;
     font-size: 1.5rem;
-    padding: 5% 5% 0 5%;
+    padding: 0% 5% 0 5%;
     border-bottom: 1px solid black;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 .divActionButtons {
@@ -298,7 +298,11 @@ li {
 /* ADDITIONAL INFORMATION */ 
 #divAdditionalInformations {
     margin-block: 5%;
-    padding: 5%;
+    padding-inline: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
     background-color: var(--color-accent);
     transition: background-color 1s ease-in-out;
     font-size: 1rem;
@@ -314,7 +318,7 @@ li {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    padding: 5%;
+    margin-bottom: 3%;
 }
 
 /* CARDS */
@@ -348,6 +352,11 @@ li {
     font-size: 1rem;
 }
 
+.playersHandContainer {
+  display: flex;
+  justify-content: center;
+}
+
 #playersHand {
     margin-top: 5%;
     margin-bottom: 10%;
@@ -358,4 +367,103 @@ li {
     cursor: pointer;
     
     overflow-x: scroll;
+}
+
+
+/* ---------------------- */
+/* MEDIA QUERYS           */
+/* ---------------------- */
+
+/* Tablet                 */
+/* ---------------------- */
+@media (min-width: 610px) {
+
+  /* HEADER */
+  /* ---------------------- */
+  header {
+    gap:1.6rem;
+    padding: 1%;
+  }
+  .header-title {
+    font-size: 1.8rem;
+  }
+  .header-title-small {
+    font-size: 1.2rem;
+  }
+  .header-img {
+    width:180px;
+  }
+
+  /* CURRENT CYCLE */
+  #divCurrentCycle .element-img {
+    width: 10%;
+  }
+
+  .divPlayerName {
+    font-size: 2rem;
+  }
+
+  #btnEnd, #btnRestart {
+    font-size: 1rem;
+  }
+
+  #divAdditionalInformations {
+    font-size: 1.5rem;
+  }
+
+  .menu-item {
+    width: 60%;
+    padding-block: 3%;
+    font-size: 1.2rem;
+  }
+}
+
+
+/* Desktop                */
+/* ---------------------- */
+@media (min-width: 1100px) {
+
+  /* HEADER */
+  /* ---------------------- */
+  header {
+    gap:1.6rem;
+    padding: 0%;
+  }
+  .header-title {
+    font-size: 3rem;
+  }
+  .header-title-small {
+    font-size: 2rem;
+  }
+  .header-img {
+    width:200px;
+  }
+
+  /* CURRENT CYCLE */
+  #divCurrentCycle .element-img {
+    width: 10%;
+  }
+
+  #divAdditionalInformations {
+    padding: 3%;
+    font-size: 2rem;
+  }
+
+  /* CARDS */
+  .card {
+    width: 205px;
+    height: 300px;
+  }
+
+  .card img {
+    width: 180px;
+  }
+
+  .card p {
+    font-size: 1.5rem;
+  }
+
+  .playersHandContainer {
+    margin-inline: 15%;
+  }
 }

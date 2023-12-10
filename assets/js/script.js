@@ -1,3 +1,4 @@
+// GLOBAL DECK OF ALL CARDS
 let deck = [
     // SEASON 
     { id: "cardId_1", element: "wood", category: "season", name: "spring" },
@@ -73,20 +74,26 @@ let deck = [
     { id: "cardId_60", element: "water", category: "animal", name: "turtle" },
 ];
 
+// GLOBAL SPECIAL DECK OF CARDS (containing the cycle cards)
 let specialDeck = [
-    // SPECIAL CARDS
     { id: "cardId_100", element: "cycle", category: "cycle", name: "regulate"},
     { id: "cardId_101", element: "cycle", category: "cycle", name: "counteract"},
     { id: "cardId_102", element: "cycle", category: "cycle", name: "generate"},
     { id: "cardId_103", element: "cycle", category: "cycle", name: "drain"}
 ];
 
-let playersHand = [];
-let currentTopCard;
-let currentElementCycle;
+// GLOBAL VARIABLES
+let playersHand = []; // storing elements pushed from deck
+let currentTopCard; // storing the current top card (peoperties: id, element, category, name)
+let currentElementCycle; // storing the name of the cycle as string
+
+
+// #######################################################
+// ############ NAVIGATION FUNCTIONALITY #################
+// #######################################################
 
 /***
- * This function is starting the game. 
+ * This is the MAIN-Function: Calling all nessecary funtions to prepare the data for the new game.
  */
 function startGame() {
     // display the board
@@ -120,105 +127,60 @@ function startGame() {
 }
 
 /**
- * This function will return a card from the deck.
- * Basically the first one on top
- * So always Index: 0
+ * This function is ending the game. 
+ * All variables will be reseted.
  */
-function getCard() {
-    if(deck.length > 0) {
-        let drawnCard = deck[0];
-        removeElementByIndex(deck, 0);
-        return drawnCard;
-    } else {
-        let deckElement = document.getElementById("deck");
-        deckElement.innerHTML = "";
-
-        let imgElement = document.createElement("img");
-        imgElement.src = "assets/images/no-cards.png";
-        imgElement.alt = "no cards";
-
-        deckElement.appendChild(imgElement);
-
-        return null;
-    }
-    
+function endGame() {
+    location.reload();
 }
 
 /**
- * This function is checking if the card the player selected can be placed. 
- * Setting the card depends on the current element cycle. 
+ * This function ends and starts the game again
  */
-function isSetCardAllowed(card) {
-    let cycleElementOrder = getElementOrder(currentElementCycle);
+function restartGame() {
+    // Set a flag in local storage to indicate a restart
+    localStorage.setItem('restartFlag', 'true');
 
-    let indexCurrentCard = cycleElementOrder.indexOf(currentTopCard.element);
-    let indexCardToPlace = cycleElementOrder.indexOf(card.element);
-
-    if(indexCardToPlace == indexCurrentCard + 1 
-        || (indexCardToPlace == 0 && (indexCurrentCard + 1) == cycleElementOrder.length))
-        return true;
-    else
-        return false;
+    // End the game
+    endGame();
 }
 
-function setCardByEvent(e) {
-    let cardId = e.currentTarget.id;
-    // get card from playersHand by id
-    let card = playersHand.find(card => card.id === cardId);
-    // check if setCard is allowed - depending on the current element cycle
-    let setCardAllowed = isSetCardAllowed(card);
-    if(setCardAllowed) {
-        // call setCard
-        setCard(card);
-        // when we set the card, we will have to discard that card from our hand
-        discardCard(card);
-
-        // if player has discared the last card, the game is over - show a propper message
-        if(playersHand.length == 0) {
-            displayAdditionalInformations("CONGRATULATIONS - YOU HAVE FINISHED THE GAME. <br/> Hopefully you have learned something :)");
-        }
+/**
+ * Call if page is being refreshed or reloaded
+ */
+window.onload = function() {
+    // Check if the page is being reloaded due to a restart
+    if (localStorage.getItem('restartFlag') === 'true') {
+        // Start the game again
+        startGame();
+        // Clear the restart flag in local storage
+        localStorage.removeItem('restartFlag');
     }
-    else {
-        displayAdditionalInformations("You can not place a " + card.element + " element on top of an " + currentTopCard.element + " element in the " + currentElementCycle + " cycle.");
-    }
+};
+
+/***
+ * This function displays the game board and hides the game navigation
+ */
+function showBoard() {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("game").style.display = "block";
 }
 
-function discardCard(card) {
-    var cardToRemove = document.getElementById(card.id);
-    
-    if (cardToRemove) {
-        var parentElement = cardToRemove.parentNode;
-        parentElement.removeChild(cardToRemove);
-        playersHand = playersHand.filter(item => item !== card);
-    }
+/***
+ * This function displays the game navigation and hides the game board
+ */
+function showLandingPage() {
+    document.getElementById("menu").style.display = "flex";
+    document.getElementById("game").style.display = "none";
 }
 
-function setCard(card) {
-    currentTopCard = card;
-    let topCardElement = document.getElementById("topCard");
-    topCardElement.innerHTML = "";
+// #######################################################
+// ############### MAIN FUNCTIONALITY ####################
+// #######################################################
 
-    /* EXAMPLE: 
-        <img src="assets/images/wood.png" alt="top card">
-        <p>season</p>
-        <p>spring</p>
-    */
-
-    let imgElement = document.createElement("img");
-    imgElement.src = "assets/images/" + card.element + ".png";
-    imgElement.alt = card.element;
-
-    let pElement1 = document.createElement("p");
-    pElement1.appendChild(document.createTextNode(card.category));
-
-    let pElement2 = document.createElement("p");
-    pElement2.appendChild(document.createTextNode(card.name));
-
-    topCardElement.appendChild(imgElement);
-    topCardElement.appendChild(pElement1);
-    topCardElement.appendChild(pElement2);
-}
-
+/**
+ * This function gets a card from the global deck and pushes it to the players hand and creates the HTML to display
+ */
 function draw() {
     let card = getCard();
 
@@ -264,43 +226,121 @@ function draw() {
 }
 
 /**
- * This function is merging two arrays together and returning the concatinated array
- * @param {*} array1 
- * @param {*} array2 
- * @returns the merged array
+ * This function is called by user interaction with the HTML
+ * @param {event} e 
  */
-function mergeArrays(array1, array2){
-    let mergedArray = array1.concat(array2);
-    return mergedArray;
+function setCardByEvent(e) {
+    let cardId = e.currentTarget.id;
+    // get card from playersHand by id
+    let card = playersHand.find(card => card.id === cardId);
+    // check if setCard is allowed - depending on the current element cycle
+    let setCardAllowed = isSetCardAllowed(card);
+    if(setCardAllowed) {
+        // call setCard
+        setCard(card);
+        // when we set the card, we will have to discard that card from our hand
+        discardCard(card);
+
+        // if player has discared the last card, the game is over - show a propper message
+        if(playersHand.length == 0) {
+            displayAdditionalInformations("CONGRATULATIONS - YOU HAVE FINISHED THE GAME. <br/> Hopefully you have learned something :)");
+        }
+    }
+    else {
+        displayAdditionalInformations("You can not place a " + card.element + " element on top of an " + currentTopCard.element + " element in the " + currentElementCycle + " cycle.");
+    }
 }
 
 /**
- * This function is removing an element from an array by its index
- * @param {*} array 
- * @param {*} index 
+ * This function generates the HTML for the new top card to be displayed
+ * @param {object[]} card 
  */
-function removeElementByIndex(array, index) {
-    array.splice(index, 1);
+function setCard(card) {
+    currentTopCard = card;
+    let topCardElement = document.getElementById("topCard");
+    topCardElement.innerHTML = "";
+
+    /* EXAMPLE: 
+        <img src="assets/images/wood.png" alt="top card">
+        <p>season</p>
+        <p>spring</p>
+    */
+
+    let imgElement = document.createElement("img");
+    imgElement.src = "assets/images/" + card.element + ".png";
+    imgElement.alt = card.element;
+
+    let pElement1 = document.createElement("p");
+    pElement1.appendChild(document.createTextNode(card.category));
+
+    let pElement2 = document.createElement("p");
+    pElement2.appendChild(document.createTextNode(card.name));
+
+    topCardElement.appendChild(imgElement);
+    topCardElement.appendChild(pElement1);
+    topCardElement.appendChild(pElement2);
 }
 
-/***
- * This function will show the board and hide the landing page
+/**
+ * This function returns the top card from the deck, always at Index 0.
+ * @returns object[] card or null
  */
-function showBoard() {
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("game").style.display = "block";
+function getCard() {
+    if(deck.length > 0) {
+        let drawnCard = deck[0];
+        removeElementByIndex(deck, 0);
+        return drawnCard;
+    } else {
+        let deckElement = document.getElementById("deck");
+        deckElement.innerHTML = "";
+
+        let imgElement = document.createElement("img");
+        imgElement.src = "assets/images/no-cards.png";
+        imgElement.alt = "no cards";
+
+        deckElement.appendChild(imgElement);
+
+        return null;
+    }
+    
 }
 
-/***
- * This function will show the landing page and hide the board
+/**
+ * This function removes a card from the players hand
+ * @param {object[]} card 
  */
-function showLandingPage() {
-    document.getElementById("menu").style.display = "flex";
-    document.getElementById("game").style.display = "none";
+function discardCard(card) {
+    var cardToRemove = document.getElementById(card.id);
+    
+    if (cardToRemove) {
+        var parentElement = cardToRemove.parentNode;
+        parentElement.removeChild(cardToRemove);
+        playersHand = playersHand.filter(item => item !== card);
+    }
 }
 
-/***
- * 
+/**
+ * This function is checking if the card the player selected can be placed. 
+ * Setting the card depends on the current element cycle. 
+ * @param {object[]} card 
+ * @returns bool
+ */
+function isSetCardAllowed(card) {
+    let cycleElementOrder = getElementOrder(currentElementCycle);
+
+    let indexCurrentCard = cycleElementOrder.indexOf(currentTopCard.element);
+    let indexCardToPlace = cycleElementOrder.indexOf(card.element);
+
+    if(indexCardToPlace == indexCurrentCard + 1 
+        || (indexCardToPlace == 0 && (indexCurrentCard + 1) == cycleElementOrder.length))
+        return true;
+    else
+        return false;
+}
+
+/**
+ * This function generates the HTML for the "Current Element Cycle"
+ * @param {object[]} cycle 
  */
 function setElementCycle(cycle) {
     currentElementCycle = cycle.name;
@@ -335,6 +375,10 @@ function setElementCycle(cycle) {
     displayAdditionalInformations(additionalInformation);
 }
 
+/**
+ * This function generates the HTML element to display additional new information for the user.
+ * @param {string} information 
+ */
 function displayAdditionalInformations(information) {
     let divAdditionalInformations = document.getElementById("divAdditionalInformations");
     divAdditionalInformations.innerHTML = "";
@@ -351,8 +395,15 @@ function displayAdditionalInformations(information) {
     }, 3000);
 }
 
-/***
- * This function is returning the element cycle order 
+
+// #######################################################
+// ############# HELPER FUNCTIONALITY ####################
+// #######################################################
+
+/**
+ * This function returns an array of elements based on the cycleName
+ * @param {string} cycleName 
+ * @returns array of strings or null
  */
 function getElementOrder(cycleName) {
     switch (cycleName) {
@@ -369,8 +420,8 @@ function getElementOrder(cycleName) {
     }
 }
 
-/***
- * Shuffle the deck randomly
+/**
+ * The elements in the global variable "deck" will be rearanged randomly.
  */
 function shuffleDeck() {
     for(let i = deck.length - 1; i > 0; i--) {
@@ -379,6 +430,26 @@ function shuffleDeck() {
         deck[newIndex] = deck[i];
         deck[i] = oldValue;
     }
+}
+
+/**
+ * This function merges two arrays together and returns the concatenated array.
+ * @param {object[]} array1 
+ * @param {object[]} array2 
+ * @returns object[] mergedArray
+ */
+function mergeArrays(array1, array2){
+    let mergedArray = array1.concat(array2);
+    return mergedArray;
+}
+
+/**
+ * This function is removing an element from an array by its index
+ * @param {object[]} array 
+ * @param {number} index 
+ */
+function removeElementByIndex(array, index) {
+    array.splice(index, 1);
 }
 
 /**
@@ -393,28 +464,13 @@ function getRandomIndex(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function endGame() {
-    location.reload();
-}
-
-function restartGame() {
-    // Set a flag in local storage to indicate a restart
-    localStorage.setItem('restartFlag', 'true');
-
-    // End the game
-    endGame();
-}
-
-// Check if the page is being reloaded due to a restart
-window.onload = function() {
-    if (localStorage.getItem('restartFlag') === 'true') {
-        // Start the game again
-        startGame();
-        // Clear the restart flag in local storage
-        localStorage.removeItem('restartFlag');
-    }
-};
-
+// #######################################################
+// ################# STARTING POINT ######################
+// #######################################################
+/**
+ * After HTML is fully loaded, all nessecary event-listeners will be added to the HTML elements.
+ * This ensures the interaction between the html and the javascript.
+ */
 document.addEventListener("DOMContentLoaded", function() {
     // ADD CLICK EVENT - START GAME
     let btnStartGame = document.getElementById("btnStart");

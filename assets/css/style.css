@@ -4,17 +4,11 @@
     --color-primary: #0C65A0;
     --color-secondary: #1c5981;
     --color-accent: #f4b160;
-
-    --color-fire: #C51000;
-    --color-water: #128BDA;
-    --color-metal: #BBBCBA;
-    --color-earth: #FCE475;
-    --color-wood: #28773A;
+    --color-green: #28773A;
 
     /* fonts */
     /* ---------------------- */
     --font-family-primary: "Exo 2", sans-serif;
-
 }
 
 /* ---------------------- */
@@ -95,7 +89,6 @@ main {
     margin-top: 10%;
     gap:1rem;
 }
-
 .menu-item {
     width: 80%;
     text-align: center;
@@ -105,10 +98,6 @@ main {
     background-color: var(--color-secondary);
     border:3px solid var(--color-primary);
     cursor: pointer;
-}
-
-#game {
-    display: none;
 }
 
 /* MODAL */ 
@@ -126,7 +115,7 @@ main {
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   }
-  
+
   /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
@@ -158,6 +147,12 @@ main {
     align-items: center;
     flex-direction: column;
   }
+
+  .footer p {
+    color: #fff;
+    margin: 15px 0 10px 0;
+  }
+
   .wave {
     position: absolute;
     top: -100px;
@@ -196,10 +191,7 @@ main {
     animation: animate 3s linear infinite;
   }
 
-  .footer p {
-    color: #fff;
-    margin: 15px 0 10px 0;
-  }
+  
   
   @keyframes animateWaves {
     0% {
@@ -242,7 +234,12 @@ li {
 /* BOARD */
 /* ---------------------- */
 
-/* PLAYER NAME */
+#game {
+  display: none;
+}
+
+/* BOARD INFORMATION */
+/* ---------------------- */
 .divPlayerName {
     display: flex;
     flex-wrap: wrap;
@@ -270,6 +267,7 @@ li {
 }
 
 /* CURRENT CYCLE */
+/* ---------------------- */
 #divCurrentCycle {
     display:flex;
     justify-content: center;
@@ -296,6 +294,7 @@ li {
 }
 
 /* ADDITIONAL INFORMATION */ 
+/* ---------------------- */
 #divAdditionalInformations {
     margin-block: 5%;
     padding-inline: 3%;
@@ -313,7 +312,7 @@ li {
 }
 
 .notification {
-  background-color: var(--color-wood) !important;
+  background-color: var(--color-green) !important;
   color: white !important;
 }
 
@@ -325,6 +324,7 @@ li {
 }
 
 /* CARDS */
+/* ---------------------- */
 .card {
     width: 145px;
     background-color: white;
@@ -355,6 +355,8 @@ li {
     font-size: 1rem;
 }
 
+/* PLAYERS HAND */
+/* ---------------------- */
 .playersHandContainer {
   display: flex;
   justify-content: center;

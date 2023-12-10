@@ -144,6 +144,11 @@ WAVE Web Accessibility Evaluation Tool was used to assess the accessibility of w
   - No errors were found when passing through the official (Jigsaw) validator.
   ![CSS-Validation](doc/valid-css.jpg)
 
+## Bugs 
+| Bug description                                                                      | When / How does it appear? | Expected behaviour                        | Solution |
+| ------------------------------------------------------------------------------------ | -------------------------- | ----------------------------------------- | -------- |
+| Bug: Sometimes only 4 initial cards for the players hand will be loaded instead of 5 | When starting a new game   | Player should have always 5 initial cards | None yet |
+
 
 ## Deployment
 After this site has been tested successfully and it passed all those tests, it's time to deploy this site to a live server
@@ -189,3 +194,14 @@ Git for Windows (Git Bash):
 - Download the latest version of Git for Windows.
 - Run the installer and follow the installation wizard's instructions.
 - During the installation, you can select various options. The default options are usually fine for most users.
+
+## Credits
+
+### Media
+- All images used in this website are made, designed, created by me
+- All written information are based on my knowledge with tcm 5 elements
+
+#### Reference documents used: 
+- CodeInstitute HTML and CSS course material
+- CodeInstitute 'Love Maths' walkthrough project guidance 
+- [Mozilla Developer Network](https://developer.mozilla.org/en-US/) documentation on HTML and CSS

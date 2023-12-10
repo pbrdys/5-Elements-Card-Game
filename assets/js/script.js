@@ -54,11 +54,11 @@ let deck = [
     { id: "cardId_44", element: "metal", category: "guardian", name: "white tiger of the west" },
     { id: "cardId_45", element: "water", category: "guardian", name: "black warrior of the north" },
     // DRAGON 
-    { id: "cardId_46", element: "wood", category: "dragon", name: "unbestaendigkeit" },
+    { id: "cardId_46", element: "wood", category: "dragon", name: "inconstancy" },
     { id: "cardId_47", element: "fire", category: "dragon", name: "ego" },
     { id: "cardId_48", element: "earth", category: "dragon", name: "social habits" },
     { id: "cardId_49", element: "metal", category: "dragon", name: "rituals" },
-    { id: "cardId_50", element: "water", category: "dragon", name: "naturbeduerfnisse" },
+    { id: "cardId_50", element: "water", category: "dragon", name: "natural needs" },
     // ENERGY 
     { id: "cardId_51", element: "wood", category: "energy", name: "rising & expanding" },
     { id: "cardId_52", element: "fire", category: "energy", name: "upwards & flourishing" },
@@ -105,6 +105,9 @@ function startGame() {
     // set the first card as starting point for the game
     let drawnCard = getCard();
     if(drawnCard != null) {
+        if(drawnCard.category === "cycle") {
+            // TODO !!!
+        }
         setCard(drawnCard);
     }
 
@@ -127,14 +130,14 @@ function getCard() {
         removeElementByIndex(deck, 0);
         return drawnCard;
     } else {
-        let deck = document.getElementById("deck");
-        deck.innerHTML = "";
+        let deckElement = document.getElementById("deck");
+        deckElement.innerHTML = "";
 
         let imgElement = document.createElement("img");
         imgElement.src = "assets/images/no-cards.png";
         imgElement.alt = "no cards";
 
-        deck.appendChild(imgElement);
+        deckElement.appendChild(imgElement);
 
         return null;
     }
@@ -338,9 +341,9 @@ function displayAdditionalInformations(information) {
     // when the user makes an interaction with the game and we want to notify him with an eye-catching animation
     divAdditionalInformations.classList.add("notification");
 
-    let pElement = document.createElement("p");
-    pElement.appendChild(document.createTextNode(information));
-    divAdditionalInformations.appendChild(pElement);
+    let h2Element = document.createElement("h2");
+    h2Element.appendChild(document.createTextNode(information));
+    divAdditionalInformations.appendChild(h2Element);
 
     // the notification eye-catcher disapears after 3 seconds
     setTimeout(function() {

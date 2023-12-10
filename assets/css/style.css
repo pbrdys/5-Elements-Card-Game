@@ -2,7 +2,7 @@
     /* colors */
     /* ---------------------- */
     --color-primary: #0C65A0;
-    --color-secondary: #287db5;
+    --color-secondary: #1c5981;
     --color-accent: #f4b160;
 
     --color-fire: #C51000;
@@ -206,7 +206,7 @@ main {
       background-position-x: 1000px;
     }
     100% {
-      background-positon-x: 0px;
+      /* background-positon-x: 0px; */
     }
   }
   
@@ -215,7 +215,7 @@ main {
       background-position-x: -1000px;
     }
     100% {
-      background-positon-x: 0px;
+      /* background-positon-x: 0px; */
     }
   }
 
@@ -305,8 +305,11 @@ li {
     height: 100px;
     background-color: var(--color-accent);
     transition: background-color 1s ease-in-out;
-    font-size: 1rem;
     font-weight: 600;
+}
+
+#divAdditionalInformations h2 {
+  font-size: 1rem;
 }
 
 .notification {
@@ -407,7 +410,7 @@ li {
     font-size: 1rem;
   }
 
-  #divAdditionalInformations {
+  #divAdditionalInformations h2{
     font-size: 1.5rem;
   }
 
@@ -415,6 +418,10 @@ li {
     width: 60%;
     padding-block: 3%;
     font-size: 1.2rem;
+  }
+
+  .playersHandContainer {
+    margin-inline: 15%;
   }
 }
 
@@ -446,6 +453,9 @@ li {
 
   #divAdditionalInformations {
     padding: 3%;
+  }
+
+  #divAdditionalInformations h2 {
     font-size: 2rem;
   }
 
@@ -461,9 +471,5 @@ li {
 
   .card p {
     font-size: 1.5rem;
-  }
-
-  .playersHandContainer {
-    margin-inline: 15%;
   }
 }

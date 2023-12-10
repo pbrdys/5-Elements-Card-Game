@@ -104,17 +104,12 @@ function startGame() {
     setElementCycle(specialDeckCard);
     // after we set the cycle, we have to remove that card from the specialDeck
     removeElementByIndex(specialDeck, rndIndex);
-    // shuffle the remaining special cards into the deck
-    deck = mergeArrays(deck, specialDeck);
     // shuffle the entire deck
     shuffleDeck();
 
     // set the first card as starting point for the game
     let drawnCard = getCard();
     if(drawnCard != null) {
-        if(drawnCard.category === "cycle") {
-            // TODO !!!
-        }
         setCard(drawnCard);
     }
 
@@ -124,6 +119,11 @@ function startGame() {
     for(let i = 0; i < 5; i++) {
         draw();
     }
+
+    // shuffle the remaining special cards into the deck
+    deck = mergeArrays(deck, specialDeck);
+    // shuffle the entire deck again
+    shuffleDeck();
 }
 
 /**

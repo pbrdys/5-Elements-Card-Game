@@ -309,6 +309,7 @@ function isSetCardAllowed(card) {
     let indexCurrentCard = cycleElementOrder.indexOf(currentTopCard.element);
     let indexCardToPlace = cycleElementOrder.indexOf(card.element);
 
+    if(indexCardToPlace == indexCurrentCard + 1 || (indexCardToPlace == 0 && (indexCurrentCard + 1) == cycleElementOrder.length))
         return true;
     else
         return false;

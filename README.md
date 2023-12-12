@@ -143,6 +143,9 @@ WAVE Web Accessibility Evaluation Tool was used to assess the accessibility of w
 - CSS
   - No errors were found when passing through the official (Jigsaw) validator.
   ![CSS-Validation](doc/valid-css.jpg)
+- JS
+    - No errors were found when passing through the (Jshint) validator.
+    ![JS-Hint](doc/jshint.jpg)
 
 ## Bugs 
 | Bug description                                                                      | When / How does it appear? | Expected behaviour                        | Solution |

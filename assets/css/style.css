@@ -47,7 +47,9 @@ body {
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5;
-    height:100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* HEADER */
@@ -74,9 +76,8 @@ header {
 /* MAIN */
 /* ---------------------- */
 main {
-    display:flex;
-    flex-direction: column;
-    min-height:100%;
+    flex: 1 0 auto;
+    margin-bottom: 3%;
 }
 
 /* MENU */
@@ -146,6 +147,7 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex-shrink: 1;
   }
 
   .footer p {
@@ -248,7 +250,7 @@ li {
     font-size: 1.5rem;
     padding: 0% 5% 0 5%;
     border-bottom: 1px solid black;
-    margin-bottom: 3%;
+    margin-bottom: 2%;
 }
 
 .divActionButtons {
@@ -290,13 +292,13 @@ li {
 }
 
 .divActionButtons {
-    padding: 5%;
+    padding: 1%;
 }
 
 /* ADDITIONAL INFORMATION */ 
 /* ---------------------- */
 #divAdditionalInformations {
-    margin-block: 5%;
+    margin-block: 2%;
     padding-inline: 3%;
     display: flex;
     justify-content: center;
@@ -320,7 +322,6 @@ li {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 3%;
 }
 
 /* CARDS */
@@ -363,7 +364,7 @@ li {
 }
 
 #playersHand {
-    margin-top: 5%;
+    margin-top: 3%;
     margin-bottom: 10%;
     display: flex;
     position: relative;
@@ -401,7 +402,7 @@ li {
 
   /* CURRENT CYCLE */
   #divCurrentCycle .element-img {
-    width: 10%;
+    width: 8%;
   }
 
   .divPlayerName {
@@ -438,20 +439,6 @@ li {
     gap:1.6rem;
     padding: 0%;
   }
-  .header-title {
-    font-size: 3rem;
-  }
-  .header-title-small {
-    font-size: 2rem;
-  }
-  .header-img {
-    width:200px;
-  }
-
-  /* CURRENT CYCLE */
-  #divCurrentCycle .element-img {
-    width: 10%;
-  }
 
   #divAdditionalInformations {
     padding: 3%;
@@ -468,8 +455,8 @@ li {
   }
 
   .card img {
-    width: 180px;
-  }
+    width: 150px;
+}
 
   .card p {
     font-size: 1.5rem;

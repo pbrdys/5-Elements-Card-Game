@@ -166,14 +166,6 @@ function showBoard() {
     document.getElementById("game").style.display = "block";
 }
 
-/***
- * This function displays the game navigation and hides the game board
- */
-function showLandingPage() {
-    document.getElementById("menu").style.display = "flex";
-    document.getElementById("game").style.display = "none";
-}
-
 // #######################################################
 // ############### MAIN FUNCTIONALITY ####################
 // #######################################################
@@ -189,14 +181,6 @@ function draw() {
             setElementCycle(card);
         } else {
             let playersHandElement = document.getElementById("playersHand");
-
-            /* EXAMPLE: 
-            <div class="card">
-                <img src="assets/images/earth.png" alt="earth">
-                <p>season</p>
-                <p>spring</p>
-            </div>
-            */
 
             let cardElement = document.createElement("div");
             cardElement.classList.add("card");
@@ -243,7 +227,6 @@ function setCardByEvent(e) {
 
         // if player has discared the last card, the game is over - show a propper message
         if(playersHand.length == 0) {
-            displayAdditionalInformations("CONGRATULATIONS - YOU HAVE FINISHED THE GAME. <br/> Hopefully you have learned something :)");
         }
     }
     else {
@@ -259,12 +242,6 @@ function setCard(card) {
     currentTopCard = card;
     let topCardElement = document.getElementById("topCard");
     topCardElement.innerHTML = "";
-
-    /* EXAMPLE: 
-        <img src="assets/images/wood.png" alt="top card">
-        <p>season</p>
-        <p>spring</p>
-    */
 
     let imgElement = document.createElement("img");
     imgElement.src = "assets/images/" + card.element + ".png";
@@ -331,8 +308,6 @@ function isSetCardAllowed(card) {
     let indexCurrentCard = cycleElementOrder.indexOf(currentTopCard.element);
     let indexCardToPlace = cycleElementOrder.indexOf(card.element);
 
-    if(indexCardToPlace == indexCurrentCard + 1 
-        || (indexCardToPlace == 0 && (indexCurrentCard + 1) == cycleElementOrder.length))
         return true;
     else
         return false;
@@ -353,13 +328,11 @@ function setElementCycle(cycle) {
         let currentElement = cycleElementOrder[i];
 
         // create element img 
-        // example: <img src="assets/images/wood.png" class="element-img" alt="wood">
         let imgElement = document.createElement("img");
         imgElement.src = "assets/images/" + currentElement + ".png";
         imgElement.classList.add("element-img");
         imgElement.alt = currentElement;
         // create arrow
-        // html example: <i class="arrow right"></i>
         let arrowElement = document.createElement("i");
         arrowElement.classList.add("arrow");
         arrowElement.classList.add("right");

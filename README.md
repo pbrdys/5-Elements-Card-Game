@@ -62,6 +62,11 @@ This section describes the different parts of the 5 Elements Card Game site.
 
     ![Card](doc/card.jpg)
 
+- __404 Page__
+    - This page is designed to display a 404 error page to the user instead of an empty page when he enters an incorrect URL.
+    - In the event of site refactoring or changed links, users will receive informative feedback instead of encountering a blank screen.
+    ![404 Page](doc/404.jpg)
+
 ### Future Features
 The following features are not available in this release, but will be implemented in the future. 
     - __Multiplayer Mode__
@@ -146,11 +151,6 @@ WAVE Web Accessibility Evaluation Tool was used to assess the accessibility of w
 - JS
     - No errors were found when passing through the (Jshint) validator.
     ![JS-Hint](doc/jshint.jpg)
-
-## Bugs 
-| Bug description                                                                      | When / How does it appear? | Expected behaviour                        | Solution |
-| ------------------------------------------------------------------------------------ | -------------------------- | ----------------------------------------- | -------- |
-| Bug: Sometimes only 4 initial cards for the players hand will be loaded instead of 5 | When starting a new game   | Player should have always 5 initial cards | None yet |
 
 
 ## Deployment

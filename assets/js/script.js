@@ -188,7 +188,7 @@ function draw() {
 
             let imgElement = document.createElement("img");
             imgElement.src = "assets/images/" + card.element + ".png";
-            imgElement.alt = card.element;
+            imgElement.alt = card.element + " " + card.category + " card";
 
             let pElement1 = document.createElement("p");
             pElement1.appendChild(document.createTextNode(card.category));
@@ -227,6 +227,7 @@ function setCardByEvent(e) {
 
         // if player has discared the last card, the game is over - show a propper message
         if(playersHand.length == 0) {
+            displayAdditionalInformations("CONGRATULATIONS - YOU HAVE FINISHED THE GAME. <br> Hopefully you have learned something :)");
         }
     }
     else {
@@ -245,7 +246,7 @@ function setCard(card) {
 
     let imgElement = document.createElement("img");
     imgElement.src = "assets/images/" + card.element + ".png";
-    imgElement.alt = card.element;
+    imgElement.alt = card.element + " " + card.category + " card";
 
     let pElement1 = document.createElement("p");
     pElement1.appendChild(document.createTextNode(card.category));
@@ -331,7 +332,7 @@ function setElementCycle(cycle) {
         let imgElement = document.createElement("img");
         imgElement.src = "assets/images/" + currentElement + ".png";
         imgElement.classList.add("element-img");
-        imgElement.alt = currentElement;
+        imgElement.alt = "cycle element " + currentElement;
         // create arrow
         let arrowElement = document.createElement("i");
         arrowElement.classList.add("arrow");
@@ -359,7 +360,7 @@ function displayAdditionalInformations(information) {
     divAdditionalInformations.classList.add("notification");
 
     let h2Element = document.createElement("h2");
-    h2Element.appendChild(document.createTextNode(information));
+    h2Element.innerHTML = information;
     divAdditionalInformations.appendChild(h2Element);
 
     // the notification eye-catcher disapears after 3 seconds

@@ -69,9 +69,9 @@ This section describes the different parts of the 5 Elements Card Game site.
 
 ### Future Features
 The following features are not available in this release, but will be implemented in the future. 
-    - __Multiplayer Mode__
+- __Multiplayer Mode__
     The primary objective is to offer a educational tool for individual users. To enhance gameplay with greater enjoyment, engagement, and excitement, leading to improved learning outcomes, the next feature to be implemented is the multiplayer mode. This mode allows a minimum of two players to engage in interactive gameplay, strategically placing and drawing cards against each other.
-    - __Advanced Gameplay Response__
+- __Advanced Gameplay Response__
     The user should get more detailed information while playing this game, which will allow him to deepen the 5 elements knowledge and learn more about the theory of the 5 elements. For example when the user is playing the generating sequence and he is placing earth on top of a fire element, we could provide informations like: 'The earth (the plants within the earth) need heat/fire/the sun in order to grow food. Meaning FIRE generates EARTH!'
 
 ## Test
@@ -151,6 +151,7 @@ WAVE Web Accessibility Evaluation Tool was used to assess the accessibility of w
 - JS
     - No errors were found when passing through the (Jshint) validator.
     ![JS-Hint](doc/jshint.jpg)
+    ![JS-Hint](doc/jshint_modal.jpg)
 
 
 ## Deployment
